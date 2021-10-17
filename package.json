@@ -1,0 +1,20 @@
+{
+  "name": "portfolio-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node run src/index.js",
+    "start-dev": "nodemon --watch src src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql-yoga": "^1.18.3",
+    "mongoose": "^6.0.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
