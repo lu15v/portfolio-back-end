@@ -2,23 +2,19 @@
 const { GraphQLServer } = require('graphql-yoga');
 const mongoose = require('mongoose');
 const {MONGODB} =require('../config');
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers/resolvers');
+const express = require('express');
 
 const __PORT__ = 5000;
-const typeDefs = `
-    type Query{
-        sayHi: String!
-    }
-`
-const resolvers = {
-    Query:{
-        sayHi:  () => 'Hello World'
-    }
-};
 
 const server = new GraphQLServer({
     typeDefs,
     resolvers //the 3rd argument is the context
 });
+
+
+server.express.use('/images', express.static('images'));
 
 mongoose
 .connect(MONGODB, {useNewUrlParser: true, useUnifiedTopology: true})
