@@ -1,4 +1,4 @@
-module.exports  = `
+module.exports  =`
     scalar Upload
 
     type Tech{
@@ -7,11 +7,44 @@ module.exports  = `
         logo: String!,
     }
 
+    type Project{
+        id: ID!
+        name: String!
+        description: String!
+        prevProject: String!
+        nextProject: String!
+        coverPagePicture: String!
+        mainPicture: String!
+        pictureName: String!
+        gitRepo: String!
+        stack: [Tech]
+    }
+
     type Query{
-        sayHi: String
+        getTech(name: String!): Tech
+        getProject(name: String!): Project
+        getProjects: [Project]
+    }
+
+    input TechInput{
+        name: String!
+        logo: Upload!
+    }
+
+    input ProjectInput{
+        name: String!
+        description: String!
+        prevProject: String!
+        nextProject: String!
+        coverPagePicture: Upload!
+        mainPicture: Upload!
+        pictureName: Upload!
+        gitRepo: String!
+        stack:[String]
     }
     
     type Mutation {
-        uploadFile (file: Upload!): Boolean
+        loadTech(input: TechInput!): Tech
+        loadProject(input: ProjectInput!): Project
     }
 `;

@@ -6,8 +6,10 @@ const techSchema = new Schema({
         required: true
     },
     logo: {
-        data: Buffer,
-        contentType: String
+        // data: Buffer,
+        // contentType: String
+        type: String, 
+        required: true
     }
 });
 

@@ -19,21 +19,29 @@ const projectSchema = new Schema({
         required: true
     },
     coverPagePicture: {
-        data: Buffer,
-        contentType: String
+        type: String,
+        required: true
     },
     mainPicture: {
-        data: Buffer,
-        contentType: String
+        type: String,
+        required: true
     },
     pictureName: {
-        data: Buffer,
-        contentType: String
+        type: String,
+        required: true
+    },
+    gitRepo: {
+        type: String,
+        required: true
     },
     stack: [{
         type: Schema.Types.ObjectId,
-        ref: 'Techs'
+        ref: 'Tech'
     }],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 
