@@ -1,7 +1,6 @@
 
 const { GraphQLServer } = require('graphql-yoga');
 const mongoose = require('mongoose');
-const {MONGODB} =require('../config');
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers/resolvers');
 const express = require('express');
@@ -17,7 +16,7 @@ const server = new GraphQLServer({
 server.express.use('/images', express.static('images'));
 
 mongoose
-.connect(process.env.MONGODB || MONGODB, {useNewUrlParser: true, useUnifiedTopology: true})
+.connect(process.env.MONGODB, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() =>{
     return server.start({port: process.env.PORT || __PORT__})
 })
