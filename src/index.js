@@ -17,9 +17,9 @@ const server = new GraphQLServer({
 server.express.use('/images', express.static('images'));
 
 mongoose
-.connect(MONGODB, {useNewUrlParser: true, useUnifiedTopology: true})
+.connect(process.env.MONGODB, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() =>{
-    return server.start({port: __PORT__})
+    return server.start({port: process.env.PORT || __PORT__})
 })
 .then(res => {
         const {port} = res.address();
