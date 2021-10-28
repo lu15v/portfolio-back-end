@@ -20,7 +20,7 @@ module.exports = {
             return projectExists
         },
         getProjects: async() =>{
-            const projects = await Project.find().sort({createdAt: -1});
+            const projects = await Project.find().populate('stack').sort({createdAt: -1});
             return projects;
         }
     },
