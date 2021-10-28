@@ -20,14 +20,11 @@ module.exports = {
             return projectExists
         },
         getProjects: async() =>{
-            const projects = await Project.find().sort({createdAt: -1});
+            const projects = await Project.find().sort({createdAt: -1}).populate('stack');
             return projects;
         }
     },
     Mutation:{
-        // loadProject: async(parent, {input:{name, description, prevProject, nextProject,
-        //                                    coverPagePicture, mainPicture, pictureName,
-        //                                    stack}}) =>{
             loadProject: async(parent, {input}) =>{
                 const errors = emptyValidator(input);
 
@@ -75,28 +72,6 @@ module.exports = {
                     ...res._doc,
                     id: res._id
                 }
-
-                // const pProject = await Project.findOne({prevProject});
-
-                // if(!pProject){
-                //     throw new UserInputError('prevProject does not exists', {
-                //         errors:{
-                //             prevProject: 'project not found'
-                //         }
-                //     })
-                // }
-
-                // const nProject = await Project.findOne({nextProject});
-
-                // if(!nProject){
-                //     throw new UserInputError('nextProject does not exists', {
-                //         errors:{
-                //             nextProject: 'project not found'
-                //         }
-                //     })
-                // }
-
-
         }
     }
 }
