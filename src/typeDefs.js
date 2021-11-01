@@ -17,7 +17,6 @@ module.exports  =`
         mainPicture: String!
         pictureName: String!
         gitRepo: String!
-        demo: String
         stack: [Tech]
     }
 
@@ -25,6 +24,7 @@ module.exports  =`
         getTech(name: String!): Tech
         getProject(name: String!): Project
         getProjects: [Project]
+        getNProjects(first: Int, next: Int): [Project]
     }
 
     input TechInput{
@@ -41,7 +41,6 @@ module.exports  =`
         mainPicture: Upload!
         pictureName: Upload!
         gitRepo: String!
-        demo: String
         stack:[String]
     }
     

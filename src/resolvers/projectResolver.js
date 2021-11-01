@@ -1,4 +1,3 @@
-const {GraphQLUpload } = require('graphql-yoga');
 const Project = require('../models/project');
 const Tech = require('../models/tech');
 const {emptyValidator} = require('../util/validators');
@@ -21,6 +20,36 @@ module.exports = {
         },
         getProjects: async() =>{
             const projects = await Project.find().sort({createdAt: -1}).populate('stack');
+            return projects;
+        },
+        getNProjects: async(_, {first, next}) =>{
+            let limit, skip;
+
+            if(first === undefined){
+                limit = 2;
+            }else{
+                limit = first;
+            }
+
+            if(next === undefined){
+                skip = 0;
+            }else{
+                skip = next;
+            }
+            
+            const totalProjects = await Project.find().count();
+
+            if(first > totalProjects){
+                throw new UserInputError('first cannot be greater than the total projects', {
+                    error: "Trying to fetch more docs than available. First " + first
+                })
+            }else if(first * next > totalProjects){
+                throw new UserInputError('cannot skip more values than available', {
+                    error: "Trying to skip more docs than available. First " + first + " next " + next
+                })
+            }
+            
+            const projects = await Project.find().sort({createdAt: -1}).limit(limit).skip(skip * limit).populate('stack');
             return projects;
         }
     },
