@@ -26,7 +26,11 @@ module.exports = {
     },
     Mutation:{
             loadProject: async(parent, {input}) =>{
-                const errors = emptyValidator(input);
+                const {name, description, prevProject, nextProject, coverPagePicture,
+                       mainPicture, pictureName, gitRepo, demo, stack} =  await input;
+                       
+                const errors = emptyValidator({name, description, prevProject, nextProject, coverPagePicture,
+                                            mainPicture, pictureName, gitRepo, stack});
 
                 if(Object.keys(errors).length > 0){
                     throw new UserInputError('empty fields', {
@@ -34,8 +38,6 @@ module.exports = {
                     })
                 }
                 
-                const {name, description, prevProject, nextProject, coverPagePicture,
-                       mainPicture, pictureName, gitRepo, stack} =  await input;
 
                 const project = await Project.findOne({name});
 
@@ -63,6 +65,7 @@ module.exports = {
                     coverPagePicture: await UploadStringUrl(coverPagePicture, pictures_path),
                     mainPicture: await UploadStringUrl(mainPicture, pictures_path),
                     pictureName: await UploadStringUrl(pictureName, pictures_path),
+                    demo,
                     gitRepo,
                     stack: techs
                 })
