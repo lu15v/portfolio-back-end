@@ -34,6 +34,10 @@ const projectSchema = new Schema({
         type: String,
         required: true
     },
+    demo:{
+        type: String,
+        default: ''
+    },
     stack: [{
         type: Schema.Types.ObjectId,
         ref: 'Tech'
