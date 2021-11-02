@@ -17,6 +17,7 @@ module.exports  =`
         mainPicture: String!
         pictureName: String!
         gitRepo: String!
+        demo: String!
         stack: [Tech]
     }
 
@@ -41,6 +42,7 @@ module.exports  =`
         mainPicture: Upload!
         pictureName: Upload!
         gitRepo: String!
+        demo: String
         stack:[String]
     }
     
