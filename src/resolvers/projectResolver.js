@@ -14,7 +14,7 @@ module.exports = {
             const projectExists = await Project.findOne({name}).populate('stack');
 
             if(!projectExists){
-                throw new Error(`Tech with name ${name} not found`);
+                throw new Error(`Project with name ${name} not found`);
             }
             return projectExists
         },
