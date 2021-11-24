@@ -26,7 +26,9 @@ module.exports = {
         //     return true;
         //   },
           loadTech: async(parent, {input}) =>{
-            const errors = emptyValidator(input);
+              const {name, logo, logo_dark_mode} = input;
+
+            const errors = emptyValidator({name, logo});
             if(Object.keys(errors).length > 0){
                 throw new UserInputError("Empty fields", {
                     errors: errors
@@ -39,7 +41,7 @@ module.exports = {
             //         }
             //     });
             // }
-            const {name, logo} = input;
+
             const tech = await Tech.findOne({name});
 
             if(tech){
@@ -50,9 +52,12 @@ module.exports = {
                 })
             }
 
+            const isLogoDarkModePresent = logo_dark_mode !== undefined && logo_dark_mode !== '';
+
             const newTech = new Tech({
                 name,
-                logo: await UploadStringUrl(logo, pictures_path)
+                logo: await UploadStringUrl(logo, pictures_path),
+                logo_dark_mode: isLogoDarkModePresent ? await UploadStringUrl(logo_dark_mode, pictures_path) : await UploadStringUrl(logo, pictures_path)
             });
             
             const res = await newTech.save();

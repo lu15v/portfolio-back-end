@@ -6,7 +6,7 @@ const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers/resolvers');
 const express = require('express');
 
-const __PORT__ = 5000;
+const __PORT__ = 5050;
 
 const server = new GraphQLServer({
     typeDefs,
