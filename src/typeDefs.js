@@ -5,6 +5,7 @@ module.exports  =`
         id: ID!,
         name: String!,
         logo: String!,
+        logo_dark_mode: String
     }
 
     type Project{
@@ -31,6 +32,7 @@ module.exports  =`
     input TechInput{
         name: String!
         logo: Upload!
+        logo_dark_mode: Upload
     }
 
     input ProjectInput{

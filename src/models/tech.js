@@ -10,6 +10,12 @@ const techSchema = new Schema({
         // contentType: String
         type: String, 
         required: true
+    },
+    logo_dark_mode: {
+        // data: Buffer,
+        // contentType: String
+        type: String, 
+        default: ''
     }
 });
 
