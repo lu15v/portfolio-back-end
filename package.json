@@ -15,13 +15,15 @@
     "express": "^4.17.1",
     "graphql-yoga": "^1.18.3",
     "mongoose": "^6.0.11",
-    "npm-force-resolutions": "^0.0.10"
+    "npm-force-resolutions": "^0.0.10",
+    "graphql":"14.3.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
   },
   "resolutions": {
     "fs-capacitor": "^6.2.0",
-    "graphql-upload": "^11.0.0"
+    "graphql-upload": "^11.0.0",
+    "graphql": "14.3.1"
   }
 }
